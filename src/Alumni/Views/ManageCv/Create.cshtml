@@ -1,0 +1,193 @@
+@model Alumni.Models.UserCVLink
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>UserCVLink</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h4>Educatie</h4>
+        <div class="form-group">
+            <label asp-for="@Model.Education.DateEarned" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Education.DateEarned" class ="form-control">
+                <span asp-validation-for="Education.DateEarned" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Education.EducationDescription" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Education.EducationDescription" class ="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Education.EducationDescription" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Education.EducationTitle" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Education.EducationTitle" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Education.EducationTitle" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Education.EducationType" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Education.EducationType" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Education.EducationType" class="text-danger" />
+            </div>
+        </div>
+
+        <h4>Locatie</h4>
+        <div class="form-group">
+            <label asp-for="@Model.Location.StartDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Location.StartDate" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Location.StartDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Location.EndDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Location.EndDate" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Location.EndDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Location.City" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Location.City" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Location.City" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Location.StateOrProvince" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Location.StateOrProvince" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Location.StateOrProvince" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Location.Country" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Location.Country" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Location.Country" class="text-danger" />
+            </div>
+        </div>
+
+        <h4>Organizatie</h4>
+        <div class="form-group">
+            <label asp-for="@Model.Organization.StartDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Organization.StartDate" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Organization.StartDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Organization.EndDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Organization.EndDate" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Organization.EndDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Organization.OrganizationName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Organization.OrganizationName" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Organization.OrganizationName" class="text-danger" />
+            </div>
+        </div>
+
+        <h4>Publicatii</h4>
+        <div class="form-group">
+            <label asp-for="@Model.Publication.PublicationLocation" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Publication.PublicationLocation" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Publication.PublicationLocation" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Publication.PublicationTopic" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Publication.PublicationTopic" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Publication.PublicationTopic" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Publication.PublicationDescription" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Publication.PublicationDescription" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Publication.PublicationDescription" class="text-danger" />
+            </div>
+        </div>
+
+        <h4>Referinte</h4>
+        <div class="form-group">
+            <label asp-for="@Model.Referenece.ReferenceType" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Referenece.ReferenceType" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Referenece.ReferenceType" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Referenece.ReferenceDetail" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Referenece.ReferenceDetail" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Referenece.ReferenceDetail" class="text-danger" />
+            </div>
+        </div>
+
+        <h4>Competente</h4>
+        <div class="form-group">
+            <label asp-for="@Model.Skill.StartDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Skill.StartDate" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Skill.StartDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Skill.EndDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Skill.EndDate" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Skill.EndDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Skill.SkillArea" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Skill.SkillArea" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Skill.SkillArea" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Skill.SkillName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Skill.SkillName" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Skill.SkillName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Skill.SkillDescription" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Skill.SkillDescription" class="form-control" asp-items="ViewBag.LocationId">
+                <span asp-validation-for="Skill.SkillDescription" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

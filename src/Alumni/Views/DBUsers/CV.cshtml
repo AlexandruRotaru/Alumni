@@ -1,0 +1,329 @@
+﻿@model Alumni.Models.UserCVLink
+@using Microsoft.AspNetCore.Http
+
+<form asp-action="Curriculum">    
+
+    <input type="hidden" asp-for="@Model.UserId" value="@Model.UserId" />
+    <input type="hidden" asp-for="@Model.UserCVLinkID" value="@Model.UserCVLinkID" />
+
+
+    <input type="hidden" asp-for="@Model.EducationId" value="@Model.EducationId" />
+    @if (Model.Education != null)
+    {
+        <h4>Educatie</h4>
+
+        
+        @if (@Model.Education.EducationTitle == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Education.EducationTitle" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Education.EducationTitle" class="form-control"/>
+                    <span asp-validation-for="Education.EducationTitle" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Education.EducationType == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Education.EducationType" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Education.EducationType" class="form-control" />
+                    <span asp-validation-for="Education.EducationType" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Education.DateEarned == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Education.DateEarned" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Education.DateEarned" class="form-control" />
+                    <span asp-validation-for="Education.DateEarned" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Education.EducationDescription == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Education.EducationDescription" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Education.EducationDescription" class="form-control" />
+                    @*@Html.TextAreaFor(modelItem => item.Education.EducationDescription, 5, 40, new { @class = "form-control" })*@
+                    <span asp-validation-for="Education.EducationDescription" class="text-danger" />
+                </div>
+            </div>
+        }
+    }
+
+    @if (@Model.Location != null)
+    {
+        <h4>Locatie</h4>
+
+        
+        <input type="hidden" asp-for="@Model.LocationId" value="@Model.LocationId" />
+        @if (@Model.Location.StartDate == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Location.StartDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Location.StartDate" class="form-control" />
+                    <span asp-validation-for="Location.StartDate" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Location.EndDate == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Location.EndDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Location.EndDate" class="form-control" />
+                    <span asp-validation-for="Location.EndDate" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Location.City == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Location.City" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Location.City" class="form-control" />
+                    <span asp-validation-for="Location.City" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Location.StateOrProvince == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Location.StateOrProvince" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Location.StateOrProvince" class="form-control" />
+                    <span asp-validation-for="Location.StateOrProvince" class="text-danger" />
+                </div>
+            </div>
+        }    
+        @if (@Model.Location.Country == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Location.Country" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Location.Country" class="form-control" />
+                    <span asp-validation-for="Location.Country" class="text-danger" />
+                </div>
+            </div>
+
+        }
+    }
+
+    <input type="hidden" asp-for="@Model.OrganizationId" value="@Model.OrganizationId" />
+    @if (@Model.Organization != null)
+    {
+        <h4>Organizatie</h4>
+
+   
+        @if (@Model.Organization.StartDate == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Organization.StartDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Organization.StartDate" class="form-control" />
+                    <span asp-validation-for="Organization.StartDate" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Organization.EndDate == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Organization.EndDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Organization.EndDate" class="form-control" />
+                    <span asp-validation-for="Organization.EndDate" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Organization.OrganizationName == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Organization.OrganizationName" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Organization.OrganizationName" class="form-control" />
+                    <span asp-validation-for="Organization.OrganizationName" class="text-danger" />
+                </div>
+            </div>
+        }
+    }
+
+    <input type="hidden" asp-for="@Model.PublicationId" value="@Model.PublicationId" />
+    @if (@Model.Publication != null)
+    {
+        <h4>Publicatii</h4>
+
+        @if (@Model.Publication.PublicationLocation == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Publication.PublicationLocation" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Publication.PublicationLocation" class="form-control" />
+                    <span asp-validation-for="Publication.PublicationLocation" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Publication.PublicationTopic == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Publication.PublicationTopic" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Publication.PublicationTopic" class="form-control" />
+                    <span asp-validation-for="Publication.PublicationTopic" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Publication.PublicationDescription == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Publication.PublicationDescription" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Publication.PublicationDescription" class="form-control" />
+                    <span asp-validation-for="Publication.PublicationDescription" class="text-danger" />
+                </div>
+            </div>
+        }
+    }
+
+
+    @*<input type="hidden" asp-for="@Model.RefereneceId" value="@Model.RefereneceId" />
+    @if (@Model.Referenece != null)
+    {
+        <h4>Referinte</h4>
+
+    }
+    @if (@Model.Referenece.ReferenceType == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+    { }
+    else
+    {
+        <div class="form-group">
+            <label asp-for="@Model.Referenece.ReferenceType" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Referenece.ReferenceType" class="form-control" />
+                <span asp-validation-for="Reference.ReferenceType" class="text-danger" />
+            </div>
+        </div>
+    }
+    @if (@Model.Referenece.ReferenceDetail == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+    { }
+    else
+    {
+        <div class="form-group">
+            <label asp-for="@Model.Referenece.ReferenceDetail" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.Referenece.ReferenceDetail" class="form-control" />
+                <span asp-validation-for="Reference.ReferenceDetail" class="text-danger" />
+            </div>
+        </div>
+    }*@
+
+    <input type="hidden" asp-for="@Model.SkillId" value="@Model.SkillId" />
+    @if (@Model.Skill != null)
+    {
+        <h4>Competente</h4>
+
+        @if (@Model.Skill.StartDate == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Skill.StartDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Skill.StartDate" class="form-control" />
+                    <span asp-validation-for="Skill.StartDate" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Skill.EndDate == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Skill.EndDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Skill.EndDate" class="form-control" />
+                    <span asp-validation-for="Skill.EndDate" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Skill.SkillArea == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Skill.SkillArea" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Skill.SkillArea" class="form-control" />
+                    <span asp-validation-for="Skill.EndDate" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Skill.SkillName == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Skill.SkillName" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Skill.SkillName" class="form-control" />
+                    <span asp-validation-for="Skill.SkillName" class="text-danger" />
+                </div>
+            </div>
+        }
+        @if (@Model.Skill.SkillDescription == null && @Context.Session.GetInt32("UserId") != @Model.User.UserID)
+        { }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="@Model.Skill.SkillDescription" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="@Model.Skill.SkillDescription" class="form-control" />
+                    <span asp-validation-for="Skill.SkillDescription" class="text-danger" />
+                </div>
+            </div>
+        }
+    }
+    
+
+    @if (@Context.Session.GetInt32("UserId") == @Model.User.UserID)
+    {
+        <div class="form-group">
+            <input type="submit" name="update" value="@Model.UserCVLinkID" class="btn btn-default"/>
+        </div>
+    }
+</form>

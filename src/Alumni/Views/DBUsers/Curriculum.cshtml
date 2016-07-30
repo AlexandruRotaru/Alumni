@@ -1,0 +1,33 @@
+﻿@model Alumni.Models.UserViewModels.UserCvViewModel
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Mvc
+@{
+    ViewData["Title"] = "Curriculum Vitae";
+}
+
+<form asp-action="Curriculum">
+    <div class="form-horizontal">
+        <h4>CV</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="User.UserID" />
+              
+        @foreach(var item in Model.UserCvLinkList)
+        {
+            @Html.Partial("CV", item)                            
+        }          
+ 
+        @if (@Context.Session.GetInt32("UserId") == @Model.User.UserID)
+        {
+            <div class="form-group">
+                <a asp-controller="ManageCv" asp-action="Index" class="btn btn-default">All your CVs</a>
+                <a asp-controller="ManageCv" asp-action="Create" class="btn btn-default">Create New Cv</a>
+            </div>
+        }
+        <a asp-controller="Home" asp-action="Index">Take me Home</a>
+     </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

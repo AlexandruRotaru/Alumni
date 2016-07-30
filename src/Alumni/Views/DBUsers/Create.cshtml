@@ -1,0 +1,129 @@
+@model Alumni.Models.UserViewModels.CreateUserViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>DBUser</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="User.Adress" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="User.Adress" class="form-control" />
+                <span asp-validation-for="User.Adress" class="text-danger" />
+            </div>
+        </div>
+        @*<div class="form-group">
+            <label asp-for="User.AspNetUser" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="User.AspNetUser" class ="form-control" asp-items="ViewBag.AspNetUser"></select>
+            </div>
+        </div>*@
+        <div class="form-group">
+            <label asp-for="User.CNP" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="User.CNP" class="form-control" />
+                <span asp-validation-for="User.CNP" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.City" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="User.City" class="form-control" />
+                <span asp-validation-for="User.City" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.Country" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="User.Country" class="form-control" />
+                <span asp-validation-for="User.Country" class="text-danger" />
+            </div>
+        </div>          
+        <div class="form-group">
+            <label asp-for="Degree.DegreeName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Degree.DegreeName" class ="form-control" asp-items="(SelectList)@ViewData["Nume Specializare"]"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Degree.DegreeType" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Degree.DegreeType" class="form-control" asp-items="(SelectList)@ViewData["Nivel Specializare"]"></select>
+            </div>
+        </div>
+        @*<div class="form-group">
+            <label asp-for="User.Email" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="User.Email" class="form-control" />
+                <span asp-validation-for="User.Email" class="text-danger" />
+            </div>
+        </div>*@
+        <div class="form-group">
+            <label asp-for="User.Sex" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="User.Sex" class="form-control" />
+                <span asp-validation-for="User.Sex" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.Telephone_Number" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="User.Telephone_Number" class="form-control" />
+                <span asp-validation-for="User.Telephone_Number" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.fName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="User.fName" class="form-control" />
+                <span asp-validation-for="User.fName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.lName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="User.lName" class="form-control" />
+                <span asp-validation-for="User.lName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LogInUser.Email" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="LogInUser.Email" class="form-control" />
+                <span asp-validation-for="LogInUser.Email" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserRoles.Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="UserRoles.Name" class="form-control" asp-items="(SelectList)@ViewData["Rol"]"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
