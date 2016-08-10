@@ -52,6 +52,10 @@ namespace Alumni.Controllers
             else HttpContext.Session.SetString("SuccessfulSearch", "Nothing");
             return View(userss);
         }
+        public ActionResult Chat()
+        {
+            return View();
+        }
 
         public IActionResult About()
         {

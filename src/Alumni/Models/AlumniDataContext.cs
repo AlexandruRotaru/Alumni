@@ -186,6 +186,8 @@ namespace Alumni.Models
                     .WithMany(p => p.DBLoggedInUser)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_DBLoggedInUser_DBUser");
+
+                entity.Property(e => e.ConnectionId).HasColumnType("nvarchar(50)").HasMaxLength(450);
             });
 
             modelBuilder.Entity<DBPrivateMessage>(entity =>
@@ -202,6 +204,12 @@ namespace Alumni.Models
                     .WithMany(p => p.DBPrivateMessageUser)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_DBPrivateMessage_DBUser");
+
+                entity.Property(e => e.Color).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.Text).HasColumnType("varchar(500)");
+
+                entity.Property(e => e.TimeStamp).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<DBUser>(entity =>

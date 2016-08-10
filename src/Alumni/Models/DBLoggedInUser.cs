@@ -8,6 +8,7 @@ namespace Alumni.Models
         public int LoggedInUserID { get; set; }
         public int? UserId { get; set; }
         public int? RoomId { get; set; }
+        public string ConnectionId { get; set; }
 
         public virtual DBChatRoom Room { get; set; }
         public virtual DBUser User { get; set; }
