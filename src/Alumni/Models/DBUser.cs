@@ -69,7 +69,9 @@ namespace Alumni.Models
         public virtual ICollection<DBChatMessage> DBChatMessageUser { get; set; }
         [JsonIgnore]
         public virtual ICollection<DBLoggedInUser> DBLoggedInUser { get; set; }
+        [JsonIgnore]
         public virtual ICollection<DBPrivateMessage> DBPrivateMessageToUser { get; set; }
+        [JsonIgnore]
         public virtual ICollection<DBPrivateMessage> DBPrivateMessageUser { get; set; }
         public virtual ICollection<UserCVLink> UserCVLink { get; set; }
         public virtual AspNetUsers AspNetUserNavigation { get; set; }
