@@ -6,20 +6,16 @@
 <h2>Chat</h2>
 
 <div class="divContainer">
-    @*<input type="text" id="message" />
-    <input type="button" id="sendmessage" value="Send" />
-    <input type="hidden" id="displayname" />
-    <ul id="discussion"></ul>*@
     <div id="divChat" class="chatRoom">
         <div class="title">
-            Welcome to Chat Room [<span id='spanUser'></span>]
+            Welcome to Alumni Chat Room [<span id='spanUser'></span>]
 
         </div>
-        <div class="content">
+        <div class="content">            
             <div id="discussion" class="chatWindow">
-            </div>
+            </div> 
             <div id="divusers" class="users">
-            </div>
+            </div>           
         </div>
         <div class="messageBar">
             <input class="textbox" type="text" id="message" />
@@ -32,7 +28,7 @@
 </div>
 @section scripts {
     <!--Script references. -->
-    <link rel="stylesheet" href="/Css/ChatStyle.css" />
+    <link rel="stylesheet" href="~/css/ChatStyle.css" />
     <link rel="stylesheet" href="~/css/JQueryUI/themes/base/jquery.ui.all.css" />
     <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -67,7 +63,7 @@
                 code = '';
 
                 for (i = 0; i < userList.length; i++) {
-                    code = $('<div data-userid="' + userList[i].UserId + '" class="user" >' + userList[i].User.lName + ' ' + userList[i].User.fName + '</div>');
+                    code = $('<a id="' + userList[i].UserId + '" class="user" >' + userList[i].User.lName + ' ' + userList[i].User.fName + '</a>');
                     $("#divusers").append(code);
                 }                
             }
@@ -75,18 +71,17 @@
             chat.client.onUserDisconnected = function (userId, userName, userList) {
                 $('#' + userId).remove();
 
-                code = $('<div data-userid="' + userId + '" class="user" >' + userName + '</div>');
                 var disc = $('<div class="disconnect">"' + userName + '" logged off.</div>');
 
                 $(disc).hide();
-                $('#divusers').remove(code);
+                $('#divusers').prepend(disc);
                 $(disc).fadeIn(200).delay(2000).fadeOut(200);
 
             }
 
             //Function to add the newly user to user list and inform other a new user is coneected
             chat.client.newUserConnected = function (userId, userName, userList) {
-                code = $('<div data-userid="' + userId + '" class="user" >' + userName + '<div>');
+                code = $('<a id="' + userId + '" class="user" >' + userName + '</a>');
                 $("#divusers").append(code);
             }
             
@@ -174,7 +169,7 @@
 
                 $('.user').click(function () {
                     //if ($(this).hasClass('online')) {
-                        chat.server.createGroup($('#hdId').val(), $(this).attr('data-userid'));
+                        chat.server.createGroup($('#hdId').val(), $(this).attr('id'));
                        // var chatWindow = $("#divChatWindow").clone(true);
                        // $(chatWindow).attr('chatToId', $(this).attr('data-userid'));
                        // $("#chatContainer").append(chatWindow);

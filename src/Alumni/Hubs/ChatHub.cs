@@ -48,7 +48,7 @@ namespace Alumni.Hubs
             //string firstName = Context.Request.HttpContext.Session.GetString("Nume");
             //string lastName = Context.Request.HttpContext.Session.GetString("Prenume");
             var name = Context.User.Identity.Name;
-            var user = _context.DBUser.Where(u => u.AspNetUserNavigation.UserName == name).First();
+            var user = _context.DBUser.Where(u => u.Email == name).First();
 
             OnLineUser.AddUser(connectionId, user, user.UserID);
 
@@ -62,7 +62,7 @@ namespace Alumni.Hubs
             {
                 DBLoggedInUser newLUser = new DBLoggedInUser();
                 newLUser.ConnectionId = connectionId;
-                //newLUser.UserId = user.UserID;
+                newLUser.UserId = user.UserID;
                 _context.DBLoggedInUser.AddRange(newLUser);
             }
           
@@ -79,7 +79,7 @@ namespace Alumni.Hubs
 
             var connectionId = Context.ConnectionId;
             var name = Context.User.Identity.Name;
-            var userName = _context.DBUser.Where(u => u.AspNetUserNavigation.UserName == name).Select(u => u.lName + " " + u.fName).First();
+            var userName = _context.DBUser.Where(u => u.Email == name).Select(u => u.lName + " " + u.fName).First();
 
             var user = _context.DBLoggedInUser.Where(u => u.ConnectionId == connectionId).FirstOrDefault();
             if (user != null)
