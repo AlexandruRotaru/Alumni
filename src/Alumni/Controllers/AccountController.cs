@@ -146,8 +146,16 @@ namespace Alumni.Controllers
                     newUser.fName = model.FirstName;
                     newUser.lName = model.LastName;
                     newUser.AspNetUser = registeredUser.Id;
-                    _context.DBUser.Add(newUser);
+                    newUser.Email = registeredUser.Email;
+                    _context.DBUser.AddRange(newUser);
                     await _context.SaveChangesAsync();
+
+                    var createdUserId = await _context.DBUser.Where(u => u.AspNetUser == registeredUser.Id).Select(u => u.UserID).FirstAsync(); 
+                    UserCVLink link = new UserCVLink();
+                    link.UserId = createdUserId;
+                    _context.UserCVLink.AddRange(link);                    
+                    await _context.SaveChangesAsync();
+
                     _logger.LogInformation(3, "User created a new account with password.");
 
                     var userL = (from u in _context.DBUser

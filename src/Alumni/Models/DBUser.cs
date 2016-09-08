@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Alumni.Models
 {
+    [JsonObject(IsReference = true)]
     public partial class DBUser
     {
         public DBUser()
@@ -61,10 +63,15 @@ namespace Alumni.Models
 
         public string AspNetUser { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<DBChatMessage> DBChatMessageToUser { get; set; }
+        [JsonIgnore]
         public virtual ICollection<DBChatMessage> DBChatMessageUser { get; set; }
+        [JsonIgnore]
         public virtual ICollection<DBLoggedInUser> DBLoggedInUser { get; set; }
+        [JsonIgnore]
         public virtual ICollection<DBPrivateMessage> DBPrivateMessageToUser { get; set; }
+        [JsonIgnore]
         public virtual ICollection<DBPrivateMessage> DBPrivateMessageUser { get; set; }
         public virtual ICollection<UserCVLink> UserCVLink { get; set; }
         public virtual AspNetUsers AspNetUserNavigation { get; set; }
