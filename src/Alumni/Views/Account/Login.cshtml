@@ -13,7 +13,7 @@
     <div class="col-md-8">
         <section>
             <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                <h4>Use a local account to log in.</h4>
+                <h4>Folositi un cont local pentru log in.</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
@@ -46,17 +46,17 @@
                     </div>
                 </div>
                 <p>
-                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Inregistrare ca utilizator nou?</a>
                 </p>
-                <p>
+                @*<p>
                     <a asp-action="ForgotPassword">Forgot your password?</a>
-                </p>
+                </p>*@
             </form>
         </section>
     </div>
     <div class="col-md-4">
         <section>
-            <h4>Use another service to log in.</h4>
+            @*<h4>Use another service to log in.</h4>
             <hr />
             @{
                 var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
@@ -82,7 +82,7 @@
                         </div>
                     </form>
                 }
-            }
+            }*@
         </section>
     </div>
 </div>

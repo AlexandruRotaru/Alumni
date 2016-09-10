@@ -238,7 +238,7 @@ namespace Alumni.Controllers
 
                 if (user == null) return NotFound();
                 model.User = user;
-                userCv = await _context.UserCVLink.Where(us => us.UserId == id).FirstAsync();                
+                userCv = await _context.UserCVLink.Where(us => us.UserId == id).FirstOrDefaultAsync();                
             }
             else
             {
@@ -251,7 +251,7 @@ namespace Alumni.Controllers
                 if (user == null) return NotFound();
                 model.User = user;
 
-                userCv = await _context.UserCVLink.Where(us => us.UserId == user.UserID).FirstAsync();
+                userCv = await _context.UserCVLink.Where(us => us.UserId == user.UserID).FirstOrDefaultAsync();
             }
 
 
@@ -278,6 +278,8 @@ namespace Alumni.Controllers
                 model.UserCvLink.UserId = user.UserID;
                 _context.UserCVLink.AddRange(model.UserCvLink);
                 await _context.SaveChangesAsync();
+                var cvQuery = await _context.UserCVLink.Where(l => l.UserId == user.UserID).ToListAsync();
+                model.UserCvLinkList = cvQuery;
             }               
             return View(model);
         }

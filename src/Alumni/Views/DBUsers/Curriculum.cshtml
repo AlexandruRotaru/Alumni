@@ -20,11 +20,11 @@
         @if (@Context.Session.GetInt32("UserId") == @Model.User.UserID)
         {
             <div class="form-group">
-                <a asp-controller="ManageCv" asp-action="Index" class="btn btn-default">All your CVs</a>
-                <a asp-controller="ManageCv" asp-action="Create" class="btn btn-default">Create New Cv</a>
+                <a asp-controller="ManageCv" asp-action="Index" class="btn btn-default">Toate CV-urile</a>
+                <a asp-controller="ManageCv" asp-action="Create" class="btn btn-default">CV nou</a>
             </div>
         }
-        <a asp-controller="Home" asp-action="Index">Take me Home</a>
+        <a asp-controller="Home" asp-action="Index">Catre Pagina Principala</a>
      </div>
 </form>
 

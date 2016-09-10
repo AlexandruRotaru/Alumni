@@ -1,31 +1,31 @@
 ﻿@model IndexViewModel
 @{
-    ViewData["Title"] = "Manage your account";
+    ViewData["Title"] = "Contul Dumneavoastra";
 }
 
 <h2>@ViewData["Title"].</h2>
 <p class="text-success">@ViewData["StatusMessage"]</p>
 
 <div>
-    <h4>Change your account settings</h4>
+    <h4>Schimbati setariele contului</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>Parola:</dt>
         <dd>
             @if (Model.HasPassword)
             {
-                <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">Change</a>
+                <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">Schimba Parola</a>
             }
             else
             {
-                <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">Create</a>
+                <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">Creeaza Parola</a>
             }
         </dd>
-        <dt>External Logins:</dt>
+        @*<dt>External Logins:</dt>
         <dd>
 
             @Model.Logins.Count <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">Manage</a>
-        </dd>
+        </dd>*@
         @*<dt>Numar de Telefon:</dt>
         <dd>
             <p>
@@ -69,9 +69,9 @@
 
         </dd>*@
 
-        <dt>Update your info:</dt>
+        <dt>Datele Personale:</dt>
         <dd>
-            <a asp-controller="Manage" asp-action="UpdateUser" class="btn-bracketed">Update</a>
+            <a asp-controller="Manage" asp-action="UpdateUser" class="btn-bracketed">Actualizati</a>
         </dd>
     </dl>
 </div>

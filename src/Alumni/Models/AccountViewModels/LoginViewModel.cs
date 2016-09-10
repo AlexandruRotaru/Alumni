@@ -14,6 +14,7 @@ namespace Alumni.Models.AccountViewModels
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Parola")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]

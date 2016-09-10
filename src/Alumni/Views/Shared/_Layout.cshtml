@@ -42,10 +42,10 @@
                     {
                         @if (Context.User.IsInRole("Student"))
                         {
-                            <a asp-controller="DBUsers" asp-action="Curriculum" method ="get">Curriculum</a>
+                            <a asp-controller="DBUsers" asp-action="Curriculum" method ="get">Curriculum Vitae</a>
                         }
                     }</li>
-                    <li><a asp-controller="Home" asp-action="Chat">Chat</a></li>
+                    <li><a asp-controller="Home" asp-action="Search">Cautare</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

@@ -320,8 +320,7 @@ namespace Alumni.Controllers
 
         //
         // GET: /Manage/UpdateUser
-        [HttpGet]
-        [Authorize(Roles = "Profesor,Student")]
+        [HttpGet]       
         public async Task<ActionResult> UpdateUser()
         {
             var user = await GetCurrentUserAsync();

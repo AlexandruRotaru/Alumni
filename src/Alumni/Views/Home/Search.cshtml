@@ -1,9 +1,105 @@
+@model Alumni.Models.UserViewModels.SearchViewModel
 @using Microsoft.AspNetCore.Http
 @{
-    ViewData["Title"] = "Chat";
+    ViewData["Title"] = "Cautare";
 }
 
-<h2>Chat</h2>
+@{ bool advSearch;}
+<h4>Cautare</h4>
+
+<div>
+    <form asp-controller="Home" asp-action="Search" method="get">
+        @if (@Context.User.IsInRole("Profesor") || @Context.User.IsInRole("Admin"))
+        {
+            advSearch = true;
+            <input type="hidden" asp-for="@Model.isAdvancedSearch" value="@advSearch" />
+        }
+        else
+        {
+            advSearch = false;
+            <input type="hidden" asp-for="@Model.isAdvancedSearch" value="@advSearch" />
+        }
+        <p>
+            <input type="text" name="SearchString">
+            <input type="submit" value="Cautati" />            
+        </p>  
+        @if(advSearch)
+        {
+            @Html.CheckBoxFor(m => m.isEducation) <b>Educatie</b>
+            @Html.CheckBoxFor(m => m.isReference) <b>Referinta</b>
+            @Html.CheckBoxFor(m => m.isSkill) <b>Cunostiinta</b>
+            @Html.CheckBoxFor(m => m.isOrganization) <b>Organizatie</b>
+            @Html.CheckBoxFor(m => m.isPublication) <b>Publicatie</b>
+            @Html.CheckBoxFor(m => m.isLocation) <b>Locatie</b>
+        }
+        
+    </form>
+</div>
+<div>
+    @if (@Context.Session.GetString("SuccessfulSearch") == "Yes")
+        {
+        <h4>Rezultatele Cautarii</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.usersList[0].fName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.usersList[0].lName)
+                            </th>                           
+                            <th>
+                                @Html.DisplayNameFor(model => model.usersList[0].Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.usersList[0].Telephone_Number)
+                            </th>
+                            <th>
+                                Curriculum Vitae
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.usersList)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.lName)
+                                </td>                                
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Telephone_Number)
+                                </td>
+                                <td>
+                                    <a asp-controller="DBUsers" asp-action="Curriculum" asp-route-id="@item.UserID">CV</a>
+                                </td>
+                                <td>
+                                    <a asp-controller="DBUsers" asp-action="Details" asp-route-id="@item.UserID">Detalii</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+    }
+    else if (@Context.Session.GetString("SuccessfulSearch") == "No")
+    {
+        <div id="search-results">
+            <h4>Rezultatele Cautarii</h4>
+            <p>
+                "Cautarea Dumneavoastra nu a produs nici un rezultat."
+            </p>
+        </div>
+    }
+</div>
+
+
+@*<h2>Chat</h2>
 
 <div class="divContainer">
     <div id="divChat" class="chatRoom">
@@ -192,5 +288,5 @@
             return encodedValue;            
         }
     </script>
-}  
+}*@  
 

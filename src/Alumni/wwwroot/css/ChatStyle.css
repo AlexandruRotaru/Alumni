@@ -1,4 +1,4 @@
-﻿body
+﻿/*body
 {
     padding: 0px;
     margin: 0px;
@@ -11,7 +11,7 @@
     border-bottom: #5f9482 solid 2px;
     color: #1e4638;
     font-size: 24px;
-}
+}*/
 
 .submitButton
 {
@@ -28,35 +28,36 @@
 
 .chatRoom
 {
-    width: 950px;
+    width: inherit;
     margin-left: auto;
     margin-right: auto;
-    border: solid 1px gray;
+    float: inherit;
+    /*border: solid 1px gray;*/
 }
 
-    .chatRoom .title
+    /*.chatRoom .title
     {
         font-size: 16px;
         font-weight: bold;
         padding: 8px;
         background-color: #d7e5e4;
         border-bottom: solid 1px #5f9482;
-    }
+    }*/
 
     .chatRoom .content
     {
-        height: 500px;
+        height: inherit;
         clear: both;
     }
 
-        .chatRoom .content .chatWindow
+        /*.chatRoom .content .chatWindow
         {
             float: left;           
             width: 707px;
-            height: 500px;
+            height: 600px;
             border-right: solid 1px #5f9482;
             overflow-y: scroll;
-        }
+        }*/
 
             .chatRoom .content .chatWindow .message
             {
@@ -71,9 +72,10 @@
         .chatRoom .content .users
         {
             float: right;
-            width: 240px;
-            height: 500px;
+            width: inherit;
+            height: 750px;
             overflow-y: scroll;
+            overflow-x: scroll;
         }
 
             .chatRoom .content .users .user

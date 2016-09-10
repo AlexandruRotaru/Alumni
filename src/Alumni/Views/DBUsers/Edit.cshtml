@@ -1,14 +1,15 @@
 @model Alumni.Models.DBUser
+@using Microsoft.AspNetCore.Http
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editare";
 }
 
-<h2>Edit</h2>
+<h2>Editare</h2>
 
-<form asp-action="Edit">
+<form asp-action="Editare">
     <div class="form-horizontal">
-        <h4>DBUser</h4>
+        <h4>Utilizator</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="UserID" />
@@ -93,15 +94,25 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Salveaza" class="btn btn-default" />
             </div>
         </div>
     </div>
 </form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@if (Context.User.IsInRole("Admin"))
+{
+    <div>
+        <a asp-action="Index">Inapoi catre lista</a>
+    </div>
+}
+else
+{
+    <div>
+        <a asp-controller="Home" asp-action="Index">Catre Pagina Principala</a>
+    </div>
+}
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
