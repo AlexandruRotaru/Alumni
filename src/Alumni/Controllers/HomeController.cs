@@ -234,6 +234,11 @@ namespace Alumni.Controllers
             return View(model);
         }
 
+        public IActionResult Chat()
+        {
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Descrierea Aplicatiei.";

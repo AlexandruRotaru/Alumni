@@ -154,6 +154,41 @@ namespace Alumni.Models
                     .HasConstraintName("FK_DBChatMessage_DBUser");
             });
 
+            modelBuilder.Entity<Post>(entity =>
+            {
+                entity.HasKey(e => e.PostID)
+                    .HasName("PK_Post");                
+
+                entity.Property(e => e.Message).HasColumnType("varchar(500)");
+
+                entity.Property(e => e.Timestamp).HasColumnType("datetime");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Post)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Post_DBUser");
+            });
+
+            modelBuilder.Entity<Comment>(entity =>
+            {
+                entity.HasKey(e => e.CommentID)
+                    .HasName("PK_Comment");
+
+                entity.Property(e => e.Message).HasColumnType("varchar(500)");
+
+                entity.Property(e => e.Timestamp).HasColumnType("datetime");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Comment)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Comment_DBUser");
+
+                entity.HasOne(d => d.Post)
+                    .WithMany(p => p.Comment)
+                    .HasForeignKey(d => d.PostId)
+                    .HasConstraintName("FK_Comment_Post");
+            });
+
             modelBuilder.Entity<DBChatRoom>(entity =>
             {
                 entity.HasKey(e => e.RoomID)
@@ -375,6 +410,8 @@ namespace Alumni.Models
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<DBChatMessage> DBChatMessage { get; set; }
+        public virtual DbSet<Post> Post { get; set; }
+        public virtual DbSet<Comment> Comment { get; set; }
         public virtual DbSet<DBChatRoom> DBChatRoom { get; set; }
         public virtual DbSet<DBDegree> DBDegree { get; set; }
         public virtual DbSet<DBLoggedInUser> DBLoggedInUser { get; set; }

@@ -7,7 +7,7 @@
 <h2>Detalii</h2>
 
 <div>
-    <h4>Utilizator</h4>
+    <h4>@Model.lName @Model.fName</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -73,14 +73,18 @@
 </div>
 <div>
 @if (@Context.User.Identity.Name == Model.Email)
-{ 
-    
-    <a asp-action="Edit" asp-route-id="@Model.UserID">Editare</a> 
-    @if (Context.User.IsInRole("Admin"))
-    {
-        <a asp-action="Index">Inapoi catre lista</a>
-
-    }
+{    
+    <a asp-action="Edit" asp-route-id="@Model.UserID">Editare</a>    
+}
+@if (Context.User.IsInRole("Admin"))
+{
+    <a asp-action="Index">Inapoi catre lista</a><br />
 
 }
+else
+{
+    <a asp-controller="Home" asp-action="Index">Catre Pagina Principala</a>
+}
+    
+
 </div>

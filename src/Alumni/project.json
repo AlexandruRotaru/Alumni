@@ -35,7 +35,10 @@
     },
     "Microsoft.Extensions.SecretManager.Tools": "1.0.0-preview2-final",
     "Microsoft.VisualStudio.Web.CodeGeneration.Tools": "1.0.0-preview2-final",
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": "1.0.0-preview2-final",
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
+      "version": "1.0.0-preview2-final",
+      "type": "build"
+    },
     "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
     "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
     "Microsoft.AspNetCore.SignalR.Server": "0.1.0-rtm-21743",
@@ -47,7 +50,14 @@
       "version": "1.0.0-preview2-final",
       "imports": "portable-net451+win8"
     },
-    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final"
+    "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
+      "version": "1.0.0-preview2-final",
+      "imports": [
+        "portable-net45+win8"
+      ]
+    },
+      "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final"
+
     },
 
     "frameworks": {

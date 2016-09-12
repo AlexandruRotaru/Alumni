@@ -16,6 +16,8 @@ namespace Alumni.Models
             DBPrivateMessageToUser = new HashSet<DBPrivateMessage>();
             DBPrivateMessageUser = new HashSet<DBPrivateMessage>();
             UserCVLink = new HashSet<UserCVLink>();
+            Post = new HashSet<Post>();
+            Comment = new HashSet<Comment>();
         }
 
         public int UserID { get; set; }
@@ -58,6 +60,7 @@ namespace Alumni.Models
         [Display(Name = "Adresa")]
         [StringLength(90)]
         public string Adress { get; set; }
+        public string AvatarExt { get; set; }
 
         public int? DegreeId { get; set; }
 
@@ -73,6 +76,10 @@ namespace Alumni.Models
         public virtual ICollection<DBPrivateMessage> DBPrivateMessageToUser { get; set; }
         [JsonIgnore]
         public virtual ICollection<DBPrivateMessage> DBPrivateMessageUser { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Post> Post { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Comment> Comment { get; set; }
         public virtual ICollection<UserCVLink> UserCVLink { get; set; }
         public virtual AspNetUsers AspNetUserNavigation { get; set; }
         public virtual DBDegree Degree { get; set; }

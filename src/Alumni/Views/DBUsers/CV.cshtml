@@ -213,7 +213,7 @@
             <div class="form-group">
                 <label asp-for="@Model.Publication.PublicationDescription" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="@Model.Publication.PublicationDescription" class="form-control" />
+                    <textarea asp-for="@Model.Publication.PublicationDescription" class="form-control" rows="3"></textarea>
                     <span asp-validation-for="Publication.PublicationDescription" class="text-danger" />
                 </div>
             </div>
@@ -221,7 +221,7 @@
     }
 
 
-    @*<input type="hidden" asp-for="@Model.RefereneceId" value="@Model.RefereneceId" />
+    <input type="hidden" asp-for="@Model.RefereneceId" value="@Model.RefereneceId" />
     @if (@Model.Referenece != null)
     {
         <h4>Referinte</h4>
@@ -235,7 +235,7 @@
             <label asp-for="@Model.Referenece.ReferenceType" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="@Model.Referenece.ReferenceType" class="form-control" />
-                <span asp-validation-for="Reference.ReferenceType" class="text-danger" />
+                <span asp-validation-for="Referenece.ReferenceType" class="text-danger" />
             </div>
         </div>
     }
@@ -247,10 +247,10 @@
             <label asp-for="@Model.Referenece.ReferenceDetail" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="@Model.Referenece.ReferenceDetail" class="form-control" />
-                <span asp-validation-for="Reference.ReferenceDetail" class="text-danger" />
+                <span asp-validation-for="Referenece.ReferenceDetail" class="text-danger" />
             </div>
         </div>
-    }*@
+    }
 
     <input type="hidden" asp-for="@Model.SkillId" value="@Model.SkillId" />
     @if (@Model.Skill != null)
@@ -323,7 +323,7 @@
     @if (@Context.Session.GetInt32("UserId") == @Model.User.UserID)
     {
         <div class="form-group">
-            <input type="submit" name="update" value="@Model.UserCVLinkID" class="btn btn-default"/>
+            <input type="submit" name="update" value="Actualizati" class="btn btn-default"/>
         </div>
     }
 </form>

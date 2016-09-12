@@ -63,6 +63,12 @@ namespace Alumni
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(60); //timeout for session cookie
+                options.CookieName = ".ApplicationSession";
+            });
+
             services.AddSignalR();
 
             services.AddMvc(config =>
@@ -73,11 +79,7 @@ namespace Alumni
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
-            services.AddMemoryCache();
-            services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(60); //timeout for session cookie
-                options.CookieName = ".ApplicationSession";
-            });
+            
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();

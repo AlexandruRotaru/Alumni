@@ -111,7 +111,7 @@ namespace Alumni.Controllers
         }
 
         // GET: DBUsers/Edit/5
-        [Authorize(Roles = "Admin,Student")]
+        [Authorize(Roles = "Admin,Student,Profesor")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -135,7 +135,7 @@ namespace Alumni.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Admin,Student")]
+        [Authorize(Roles = "Admin,Student,Profesor")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UserID,Adress,CNP,City,Country,Email,Sex,Telephone_Number,fName,lName,AspNetUser,DegreeId")] DBUser dBUser)
         {
@@ -290,11 +290,7 @@ namespace Alumni.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CurriculumChanged(string update, UserCVLink model)
         {
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
-            if(int.Parse(update) != model.UserCVLinkID)
-            {
-                return NotFound();
-            }
+            var errors = ModelState.Values.SelectMany(v => v.Errors);           
 
             if (ModelState.IsValid)
             {
@@ -417,7 +413,7 @@ namespace Alumni.Controllers
             SkillUpdate(sk, model);
             _context.Skill.Update(sk);
 
-            //await _context.SaveChangesAsync();              
+            await _context.SaveChangesAsync();              
         }
 
         private async Task RemoveCvComponentsAsync(List<UserCVLink> links)
@@ -454,7 +450,7 @@ namespace Alumni.Controllers
                     var skill = await _context.Skill.SingleOrDefaultAsync(s => s.SkillID == link.SkillId);
                     if (skill != null) _context.Skill.Remove(skill);
                 }
-                _context.SaveChanges();
+               await  _context.SaveChangesAsync();
             }
             
         }

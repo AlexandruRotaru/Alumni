@@ -7,6 +7,7 @@ using Alumni.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.SignalR.Hubs;
 using Microsoft.AspNetCore.Http;
+using static Alumni.PrivateMessageHistory;
 
 namespace Alumni.Hubs
 {
@@ -33,9 +34,9 @@ namespace Alumni.Hubs
                 mess.Text = message;
                 mess.UserId = userId;
                 mess.Timestamp = DateTime.Now;
-                _context.DBChatMessage.AddRange(mess);
+                //_context.DBChatMessage.AddRange(mess);
 
-                _context.SaveChanges();
+                //_context.SaveChanges();
 
                 // Call the addMessage method on all clients
                 Clients.All.addNewMessage(name, message);
@@ -102,9 +103,11 @@ namespace Alumni.Hubs
             string name = OnLineUser.onLineUserList.Where(item => item.UserId == toConnectTo).Select(item => item.User.lName + " " + item.User.fName).First();
             if (!string.IsNullOrEmpty(connectionId_To))
             {
+                PrivateMessageHistory pmh = new PrivateMessageHistory(_context, currentUserId, toConnectTo);
+                
                 Groups.Add(Context.ConnectionId, strGroupName);
                 Groups.Add(connectionId_To, strGroupName);
-                Clients.Caller.setChatWindow(strGroupName, toConnectTo, name);
+                Clients.Caller.setChatWindow(strGroupName, toConnectTo, name, pmh.GetMessages());
             }
         }
 
@@ -117,6 +120,9 @@ namespace Alumni.Hubs
         {
             if (Clients != null)
             {
+                PrivateMessageHistory pmh = new PrivateMessageHistory(_context, fromUserId, toUser);
+                List<UserInfo> userInfo = pmh.GetMessages();
+
                 DBPrivateMessage privateMessage = new DBPrivateMessage();
                 privateMessage.Text = message;               
                 privateMessage.UserId = fromUserId;
@@ -126,8 +132,10 @@ namespace Alumni.Hubs
 
                 _context.SaveChanges();
 
+                
+
                 var name = _context.DBUser.Where(u => u.UserID == fromUserId).Select(u => u.lName + " " + u.fName).First();
-                Clients.Group(groupName).addMessage(message, groupName, fromUserId, toUser, name);
+                Clients.Group(groupName).addMessage(message, groupName, fromUserId, toUser, name, userInfo);
             }
         }
     }    
